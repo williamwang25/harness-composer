@@ -1,0 +1,27 @@
+policy_name: small_repo_direct
+description: Direct but bounded workflow for small repositories.
+prompt_fragments:
+  - base
+  - tool_kernel
+tool_kernel:
+  - search_code
+  - view_file
+  - safe_edit
+  - run_test
+context_policy:
+  search_first: false
+  forbid_full_file_dump: false
+  max_open_files_per_turn: 5
+  file_view_mode: range_based
+test_policy:
+  targeted_first: true
+  max_full_tests: 2
+compression_policy:
+  generic: tail_and_error_blocks
+control_policy:
+  max_turns: 30
+  repeated_command_warning: true
+memory_policy:
+  external_state: false
+expected_benefit: Avoid over-constraining tiny and small repos while preserving auditability.
+risk: Direct inspection can still waste context on generated files.

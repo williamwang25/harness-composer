@@ -1,0 +1,30 @@
+policy_name: go_static
+description: Go policy with package-level search and go test verification.
+prompt_fragments:
+  - base
+  - tool_kernel
+  - go_static
+tool_kernel:
+  - search_code
+  - view_file
+  - safe_edit
+  - run_test
+  - summarize_obs
+context_policy:
+  search_first: true
+  forbid_full_file_dump: true
+  max_open_files_per_turn: 3
+  file_view_mode: range_based
+test_policy:
+  targeted_first: true
+  likely_command: go test ./...
+  max_full_tests: 2
+compression_policy:
+  generic: tail_and_error_blocks
+control_policy:
+  max_turns: 40
+  repeated_command_warning: true
+memory_policy:
+  external_state: false
+expected_benefit: Keep package navigation explicit and verify with go test.
+risk: Large monorepos can need more targeted package selection.

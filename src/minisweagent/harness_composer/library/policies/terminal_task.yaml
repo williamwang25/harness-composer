@@ -1,0 +1,25 @@
+policy_name: terminal_task
+description: Terminal-oriented policy for tasks that mostly require shell execution.
+prompt_fragments:
+  - base
+  - terminal_task
+tool_kernel:
+  - run_test
+  - summarize_obs
+context_policy:
+  search_first: false
+  forbid_full_file_dump: true
+  max_open_files_per_turn: 1
+  file_view_mode: range_based
+test_policy:
+  targeted_first: false
+  max_full_tests: 0
+compression_policy:
+  generic: tail_and_error_blocks
+control_policy:
+  max_turns: 20
+  repeated_command_warning: true
+memory_policy:
+  external_state: false
+expected_benefit: Avoid loading code-oriented scaffolding for simple terminal tasks.
+risk: Misclassified coding tasks may get too little repository guidance.

@@ -7,6 +7,7 @@ from minisweagent import Agent, Environment, Model
 
 _AGENT_MAPPING = {
     "default": "minisweagent.agents.default.DefaultAgent",
+    "harness_composer": "minisweagent.harness_composer.adapters.mini_swe_agent_adapter.HarnessComposerAgent",
     "interactive": "minisweagent.agents.interactive.InteractiveAgent",
 }
 

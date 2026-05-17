@@ -1,0 +1,39 @@
+policy_name: all_tools
+description: Ablation policy that exposes every currently implemented module.
+prompt_fragments:
+  - base
+  - tool_kernel
+  - python_pytest
+  - large_repo
+  - js_node
+  - go_static
+  - terminal_task
+tool_kernel:
+  - search_code
+  - view_file
+  - safe_edit
+  - run_test
+  - summarize_obs
+  - state
+context_policy:
+  search_first: true
+  forbid_full_file_dump: true
+  max_open_files_per_turn: 5
+  file_view_mode: range_based
+test_policy:
+  targeted_first: true
+  max_full_tests: 2
+  parse_failed_tests: true
+compression_policy:
+  pytest: traceback_assertion_only
+  rg: top_matches_with_context
+  npm: failure_summary
+  generic: tail_and_error_blocks
+control_policy:
+  max_turns: 45
+  repeated_command_warning: true
+  budget_warning: true
+memory_policy:
+  external_state: true
+expected_benefit: Experimental comparison point for all modules loaded.
+risk: Larger prompt surface can distract the model and increase token cost.

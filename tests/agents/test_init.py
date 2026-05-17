@@ -4,6 +4,7 @@ from minisweagent.agents import get_agent, get_agent_class
 from minisweagent.agents.default import DefaultAgent
 from minisweagent.agents.interactive import InteractiveAgent
 from minisweagent.environments.local import LocalEnvironment
+from minisweagent.harness_composer.adapters.mini_swe_agent_adapter import HarnessComposerAgent
 from minisweagent.models.test_models import DeterministicModel
 
 
@@ -22,6 +23,7 @@ class TestGetAgentClass:
         ("spec", "expected"),
         [
             ("default", DefaultAgent),
+            ("harness_composer", HarnessComposerAgent),
             ("interactive", InteractiveAgent),
         ],
     )

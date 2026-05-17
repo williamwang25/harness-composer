@@ -11,6 +11,7 @@ from typing import Literal, NoReturn
 
 from prompt_toolkit.formatted_text import HTML
 from prompt_toolkit.history import FileHistory
+from prompt_toolkit.output import DummyOutput
 from prompt_toolkit.shortcuts import PromptSession
 from rich.console import Console
 from rich.rule import Rule
@@ -20,10 +21,25 @@ from minisweagent.agents.default import AgentConfig, DefaultAgent
 from minisweagent.exceptions import LimitsExceeded, Submitted, UserInterruption
 from minisweagent.models.utils.content_string import get_content_string
 
+try:
+    from prompt_toolkit.output.win32 import NoConsoleScreenBufferError
+except ImportError:  # pragma: no cover - non-Windows prompt_toolkit builds
+    class NoConsoleScreenBufferError(Exception):
+        pass
+
 console = Console(highlight=False)
 _history = FileHistory(global_config_dir / "interactive_history.txt")
-_prompt_session = PromptSession(history=_history)
-_multiline_prompt_session = PromptSession(history=_history, multiline=True)
+
+
+def _make_prompt_session(*, multiline: bool = False) -> PromptSession:
+    try:
+        return PromptSession(history=_history, multiline=multiline)
+    except NoConsoleScreenBufferError:
+        return PromptSession(history=_history, multiline=multiline, output=DummyOutput())
+
+
+_prompt_session = _make_prompt_session()
+_multiline_prompt_session = _make_prompt_session(multiline=True)
 
 
 class InteractiveAgentConfig(AgentConfig):
