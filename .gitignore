@@ -8,6 +8,13 @@ traj.json
 .claude/**
 .vscode/**
 
+
+#ignore docs
+docs
+docs/
+docs/*
+docs/**
+
 # Created by https://www.toptal.com/developers/gitignore/api/python
 # Edit at https://www.toptal.com/developers/gitignore?templates=python
 
