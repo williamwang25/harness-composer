@@ -7,6 +7,7 @@ There are three modes:
 """
 
 import re
+import sys
 from typing import Literal, NoReturn
 
 from prompt_toolkit.formatted_text import HTML
@@ -21,9 +22,9 @@ from minisweagent.agents.default import AgentConfig, DefaultAgent
 from minisweagent.exceptions import LimitsExceeded, Submitted, UserInterruption
 from minisweagent.models.utils.content_string import get_content_string
 
-try:
+if sys.platform == "win32":
     from prompt_toolkit.output.win32 import NoConsoleScreenBufferError
-except ImportError:  # pragma: no cover - non-Windows prompt_toolkit builds
+else:
     class NoConsoleScreenBufferError(Exception):
         pass
 
