@@ -1,6 +1,6 @@
 # Harness Composer Results
 
-This document organizes the figures and aggregate result tables extracted from the EMNLP paper draft.
+This document organizes the figures and aggregate result tables for the anonymous project release.
 It is intended as the project-facing companion to the README: the README shows the headline story,
 while this file keeps the table-level evidence easy to inspect on GitHub.
 

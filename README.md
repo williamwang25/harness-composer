@@ -40,8 +40,8 @@ Harness Composer tests a narrower, auditable alternative:
 
 ## Headline Results
 
-The results below are the aggregate numbers surfaced from the accompanying EMNLP paper draft. See
-[RESULTS.md](RESULTS.md) for the full extracted result tables and figure inventory.
+The results below are aggregate evaluation numbers for the current anonymous release. See
+[RESULTS.md](RESULTS.md) for the full result tables and figure inventory.
 
 | Benchmark | Base setting | Harness Composer | Accuracy gain | Cost change |
 | --- | ---: | ---: | ---: | ---: |
@@ -141,8 +141,8 @@ src/minisweagent/harness_composer/
   runtime/           observation compression helpers
   cli.py             profile and compose commands
 tests/harness_composer/
-assets/figures/      paper figures copied as PDF and GitHub-ready PNG
-RESULTS.md           extracted result tables from the paper draft
+assets/figures/      evaluation figures as PDF and GitHub-ready PNG
+RESULTS.md           aggregate result tables for the anonymous release
 ```
 
 ## Status
